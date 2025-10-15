@@ -1,10 +1,15 @@
+using MySql.Data.MySqlClient;
 using Test_Backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add services to the container.
 builder.Services.AddSingleton<NameService>();
 builder.Services.AddSingleton<CprService>();
+builder.Services.AddTransient<AddressService>();
+builder.Services.AddTransient<MySqlConnection>(_ => new MySqlConnection(connectionString));
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
