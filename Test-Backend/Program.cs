@@ -7,6 +7,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // Add services to the container.
 builder.Services.AddSingleton<NameService>();
 builder.Services.AddSingleton<CprService>();
+builder.Services.AddSingleton<PhoneNumberService>();
 builder.Services.AddTransient<AddressService>();
 builder.Services.AddTransient<MySqlConnection>(_ => new MySqlConnection(connectionString));
 
