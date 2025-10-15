@@ -6,14 +6,16 @@ namespace Test_Backend.Services;
 
 public class NameService
 {
-    public List<Name> _names;
-    public Random _random;
+    private readonly List<Name> _names;
+    private readonly Random _random;
 
     public NameService(IWebHostEnvironment environment)
     {
-        var filePath = Path.Combine(environment.ContentRootPath, "Data", "person-names.json");
+        _random = new Random();
+        var filePath = Path.Combine(environment.ContentRootPath, "person-names.json");
         var json = File.ReadAllText(filePath);
-        _names = JsonSerializer.Deserialize<List<Name>>(json);
+        var data = JsonSerializer.Deserialize<PersonNamesData>(json);
+        _names = data?.Persons ?? new List<Name>();
     }
 
     public Name GetRandomName()
