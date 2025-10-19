@@ -12,25 +12,25 @@ public class CprService
     }
 
     /// <summary>
-    /// Genererer et CPR nummer baseret på fødselsdato og køn
-    /// De første 6 cifre: ddMMyy (fra fødselsdato)
-    /// De sidste 4 cifre: XXXC hvor C er lige for kvinder, ulige for mænd
+    /// Genererer et CPR nummer baseret pï¿½ fï¿½dselsdato og kï¿½n
+    /// De fï¿½rste 6 cifre: ddMMyy (fra fï¿½dselsdato)
+    /// De sidste 4 cifre: XXXC hvor C er lige for kvinder, ulige for mï¿½nd
     /// </summary>
-    /// <param name="dateOfBirth">Fødselsdato</param>
-    /// <param name="gender">Køn: "male" eller "female"</param>
-    /// <returns>CPR objekt med nummer og fødselsdato</returns>
+    /// <param name="dateOfBirth">Fï¿½dselsdato</param>
+    /// <param name="gender">Kï¿½n: "male" eller "female"</param>
+    /// <returns>CPR objekt med nummer og fï¿½dselsdato</returns>
     public Cpr GenerateCpr(DateTime dateOfBirth, string gender)
     {
-        // Første 6 cifre: ddMMyy fra fødselsdato
+        // Fï¿½rste 6 cifre: ddMMyy fra fï¿½dselsdato
         string datePart = dateOfBirth.ToString("ddMMyy");
 
-        // Generer de første 3 tilfældige cifre (000-999)
+        // Generer de fï¿½rste 3 tilfï¿½ldige cifre (000-999)
         int firstThreeDigits = _random.Next(0, 1000);
 
-        // Sidste ciffer baseret på køn
+        // Sidste ciffer baseret pï¿½ kï¿½n
         int lastDigit = GenerateLastDigitByGender(gender);
 
-        // Sammensæt CPR nummer: ddMMyyXXXC
+        // Sammensï¿½t CPR nummer: ddMMyyXXXC
         string cprNumber = $"{datePart}{firstThreeDigits:D3}{lastDigit}";
 
         return new Cpr
@@ -41,23 +41,23 @@ public class CprService
     }
 
     /// <summary>
-    /// Genererer et tilfældigt CPR nummer med tilfældig fødselsdato og køn
+    /// Genererer et tilfï¿½ldigt CPR nummer med tilfï¿½ldig fï¿½dselsdato og kï¿½n
     /// </summary>
     public Cpr GenerateRandomCpr()
     {
-        // Generer tilfældig fødselsdato (mellem 1920 og 2024)
+        // Generer tilfï¿½ldig fï¿½dselsdato (mellem 1920 og 2024)
         DateTime randomDate = GenerateRandomDateOfBirth();
         
-        // Vælg tilfældigt køn
+        // Vï¿½lg tilfï¿½ldigt kï¿½n
         string randomGender = _random.Next(2) == 0 ? "female" : "male";
 
         return GenerateCpr(randomDate, randomGender);
     }
 
     /// <summary>
-    /// Genererer sidste ciffer baseret på køn
+    /// Genererer sidste ciffer baseret pï¿½ kï¿½n
     /// Kvinder: lige tal (0, 2, 4, 6, 8)
-    /// Mænd: ulige tal (1, 3, 5, 7, 9)
+    /// Mï¿½nd: ulige tal (1, 3, 5, 7, 9)
     /// </summary>
     private int GenerateLastDigitByGender(string gender)
     {
@@ -68,13 +68,13 @@ public class CprService
         }
         else // male
         {
-            // Ulige tal for mænd
+            // Ulige tal for mï¿½nd
             return _random.Next(0, 5) * 2 + 1; // 1, 3, 5, 7, 9
         }
     }
 
     /// <summary>
-    /// Genererer tilfældig fødselsdato mellem 1920 og 2024
+    /// Genererer tilfï¿½ldig fï¿½dselsdato mellem 1920 og 2024
     /// </summary>
     private DateTime GenerateRandomDateOfBirth()
     {
@@ -86,19 +86,17 @@ public class CprService
     }
 
     /// <summary>
-    /// Validerer om CPR nummer matcher fødselsdatoen
+    /// Validerer om CPR nummer matcher fï¿½dselsdatoen
     /// </summary>
     public bool ValidateCprWithDateOfBirth(string cprNumber, DateTime dateOfBirth)
     {
         if (string.IsNullOrEmpty(cprNumber) || cprNumber.Length != 10)
             return false;
 
-        // Udtræk dato delen fra CPR (første 6 cifre)
+        // Udtrï¿½k dato delen fra CPR (fï¿½rste 6 cifre)
         string cprDatePart = cprNumber.Substring(0, 6);
         string expectedDatePart = dateOfBirth.ToString("ddMMyy");
 
         return cprDatePart == expectedDatePart;
     }
-
-   
 }
