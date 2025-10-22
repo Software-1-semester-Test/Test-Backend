@@ -28,5 +28,11 @@ public class NameService
     public IEnumerable<Name> GetNames() => _names;
     
     public IEnumerable<Name> GetByGender(string gender) => GetNames().Where(n => n.Gender == gender);
+    public Name? GetByFullName(string firstName, string lastName)
+    {
+        return _names.FirstOrDefault(n =>
+            string.Equals(n.FirstName, firstName, StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(n.LastName, lastName, StringComparison.OrdinalIgnoreCase));
+    }
     
 }
