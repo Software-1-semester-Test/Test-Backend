@@ -6,10 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Test_Backend</RootNamespace>
     <UserSecretsId>4d87f2fe-3544-44a9-b0c9-b4472ee01973</UserSecretsId>
+	  <!--<TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
+	  <AnalysisMode>All</AnalysisMode>
+	  <AnalysisLevel>latest</AnalysisLevel>	   
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.4.0" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.15.0.120848">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

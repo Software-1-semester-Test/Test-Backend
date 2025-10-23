@@ -8,15 +8,7 @@
 [*.cs]
 #### Naming styles ####
 
-# Naming rules
 
-dotnet_naming_rule.property_should_be_pascal_case.severity = error
-dotnet_naming_rule.property_should_be_pascal_case.symbols = property
-dotnet_naming_rule.property_should_be_pascal_case.style = pascal_case
-
-dotnet_naming_rule.private_or_internal_field_should_be_start_with_.severity = error
-dotnet_naming_rule.private_or_internal_field_should_be_start_with_.symbols = private_or_internal_field
-dotnet_naming_rule.private_or_internal_field_should_be_start_with_.style = start_with_
 
 # Symbol specifications
 
@@ -61,17 +53,26 @@ csharp_space_around_binary_operators = before_and_after
 
 # Naming rules
 
-dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = warning
 dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
 dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
 
-dotnet_naming_rule.types_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.types_should_be_pascal_case.severity = warning
 dotnet_naming_rule.types_should_be_pascal_case.symbols = types
 dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
 
-dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = warning
 dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
 dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
+
+# added myself
+dotnet_naming_rule.property_should_be_pascal_case.severity = warning
+dotnet_naming_rule.property_should_be_pascal_case.symbols = property
+dotnet_naming_rule.property_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_rule.private_or_internal_field_should_be_start_with_.severity = warning
+dotnet_naming_rule.private_or_internal_field_should_be_start_with_.symbols = private_or_internal_field
+dotnet_naming_rule.private_or_internal_field_should_be_start_with_.style = start_with_
 
 # Symbol specifications
 
@@ -125,6 +126,10 @@ dotnet_diagnostic.SA1122.severity = none  # Use string.Empty for empty strings
 dotnet_diagnostic.SA1407.severity = none  # Arithmetic expressions should declare precedence
 dotnet_diagnostic.S6562.severity = none  # Provide the "DateTimeKind" when creating this object. (DateTime end = new DateTime(2024, 12, 31, 0, 0, 0, DateTimeKind.Utc);)
 dotnet_diagnostic.SA0001.severity = none  # XML comment analysis is disabled due to project configuration
+dotnet_diagnostic.CA1515.severity = none  # Because an application's API isn't typically referenced from outside the assembly, types can be made internal
+dotnet_diagnostic.CA1707.severity = none  # Remove the underscores from namespace name 'Test_Backend'
+dotnet_diagnostic.CA1051.severity = none  # Do not declare visible instance fields(already enforces by SA)
+
 
 # not sure if we want:
 dotnet_diagnostic.SA1615.severity = none  # Element return value should be documented
@@ -142,7 +147,18 @@ dotnet_diagnostic.SA1508.severity = none  # A closing brace should not be preced
 dotnet_diagnostic.SA1611.severity = none  # The documentation for parameter 'count' is missing(function parameter should be documentet)
 dotnet_diagnostic.SA1116.severity = none  # The parameters should begin on the line after the declaration, whenever the parameter span across multiple lines
 dotnet_diagnostic.SA1202.severity = none  # 'public' members should come before 'private' members
+dotnet_diagnostic.S2325.severity = none  # Make 'RandomFloor' a static method.
+dotnet_diagnostic.CA5394.severity = none  # Random is an insecure random number generator. Use cryptographically secure random number generators when randomness is required for security.
+dotnet_diagnostic.CA1822.severity = none  # Member 'RandomDoor' does not access instance data and can be marked as static
 
-
-
+# --- SECURITY RULES (make these errors) ---
+dotnet_diagnostic.S4830.severity = error  # Enable server certificate validation on this SSL/TLS connection
+dotnet_diagnostic.CA2300.severity = error  # BinaryFormatter insecure deserialization
+dotnet_diagnostic.S1215.severity = error  # Refactor the code to remove this use of 'GC.Collect'
+dotnet_diagnostic.CA2000.severity = error  # Call System.IDisposable.Dispose on object
+dotnet_diagnostic.CA5351.severity = error  # Do not use broken cryptographic algorithms (MD5)
+dotnet_diagnostic.CA1850.severity = error  # Prefer static 'System.Security.Cryptography.MD5.HashData' method over 'ComputeHash'
+dotnet_diagnostic.CA2301.severity = error  # The method 'object BinaryFormatter.Deserialize(Stream serializationStream)' is insecure when deserializing untrusted data without a SerializationBinder to restrict the type of objects in the deserialized object graph.
+dotnet_diagnostic.SA1401.severity = error  # Field should be private
+dotnet_diagnostic.CA5359.severity = error  # The ServerCertificateValidationCallback is set to a function that accepts any server certificate, by always returning true. Ensure that server certificates are validated to verify the identity of the server receiving requests.
 
