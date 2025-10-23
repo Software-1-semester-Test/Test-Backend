@@ -1,7 +1,5 @@
-﻿    using System;
-    using System.IO;
+﻿/*
     using System.Net;
-    using System.Data.SqlClient;               // part of BCL in many SDKs
     using System.Security.Cryptography;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Net.Mail;
@@ -77,3 +75,4 @@
             public string _name;
         }
     }
+*/

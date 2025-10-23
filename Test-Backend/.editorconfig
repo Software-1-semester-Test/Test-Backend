@@ -129,8 +129,11 @@ dotnet_diagnostic.SA0001.severity = none  # XML comment analysis is disabled due
 dotnet_diagnostic.CA1515.severity = none  # Because an application's API isn't typically referenced from outside the assembly, types can be made internal
 dotnet_diagnostic.CA1707.severity = none  # Remove the underscores from namespace name 'Test_Backend'
 dotnet_diagnostic.CA1051.severity = none  # Do not declare visible instance fields(already enforces by SA)
-
-
+dotnet_diagnostic.CA1002.severity = none  # Change 'List<Name>' in 'PersonNamesData.Persons' to use 'Collection<T>', 'ReadOnlyCollection<T>' or 'KeyedCollection<K,V>'
+dotnet_diagnostic.CA1305.severity = none  # The behavior of 'int.ToString()' could vary based on the current user's locale settings. Replace this call in 'PhoneNumberService.GetRandomPhoneNumber()' with a call to 'int.ToString(IFormatProvider)'.
+dotnet_diagnostic.SA1108.severity = none  # Block statements should not contain embedded comments
+dotnet_diagnostic.CA1024.severity = none  # Use properties where appropriate
+dotnet_diagnostic.S1643.severity = none  # Use a StringBuilder instead.
 # not sure if we want:
 dotnet_diagnostic.SA1615.severity = none  # Element return value should be documented
 dotnet_diagnostic.SA1503.severity = none  # Braces should not be omitted like if(true) return ... will give error because of lacking braces
