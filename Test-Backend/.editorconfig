@@ -1,0 +1,148 @@
+﻿namespace Test_Backend
+{
+    public class _
+    {
+    }
+}
+
+[*.cs]
+#### Naming styles ####
+
+# Naming rules
+
+dotnet_naming_rule.property_should_be_pascal_case.severity = error
+dotnet_naming_rule.property_should_be_pascal_case.symbols = property
+dotnet_naming_rule.property_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_rule.private_or_internal_field_should_be_start_with_.severity = error
+dotnet_naming_rule.private_or_internal_field_should_be_start_with_.symbols = private_or_internal_field
+dotnet_naming_rule.private_or_internal_field_should_be_start_with_.style = start_with_
+
+# Symbol specifications
+
+dotnet_naming_symbols.property.applicable_kinds = property
+dotnet_naming_symbols.property.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.property.required_modifiers = 
+
+dotnet_naming_symbols.private_or_internal_field.applicable_kinds = field
+dotnet_naming_symbols.private_or_internal_field.applicable_accessibilities = internal, private, private_protected
+dotnet_naming_symbols.private_or_internal_field.required_modifiers = 
+
+# Naming styles
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_style.start_with_.required_prefix = _
+dotnet_naming_style.start_with_.required_suffix = 
+dotnet_naming_style.start_with_.word_separator = 
+dotnet_naming_style.start_with_.capitalization = camel_case
+csharp_using_directive_placement = outside_namespace:silent
+csharp_prefer_simple_using_statement = true:suggestion
+csharp_prefer_braces = true:silent
+csharp_style_namespace_declarations = block_scoped:silent
+csharp_style_prefer_method_group_conversion = true:silent
+csharp_style_prefer_top_level_statements = true:silent
+csharp_style_prefer_primary_constructors = true:suggestion
+csharp_prefer_system_threading_lock = true:suggestion
+csharp_style_expression_bodied_methods = false:silent
+csharp_style_expression_bodied_constructors = false:silent
+csharp_style_expression_bodied_operators = false:silent
+csharp_style_expression_bodied_properties = true:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_indent_labels = one_less_than_current
+csharp_style_expression_bodied_accessors = true:silent
+csharp_space_around_binary_operators = before_and_after
+
+[*.{cs,vb}]
+#### Naming styles ####
+
+# Naming rules
+
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
+dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+
+dotnet_naming_rule.types_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.types_should_be_pascal_case.symbols = types
+dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
+dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
+
+# Symbol specifications
+
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.interface.required_modifiers = 
+
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
+dotnet_naming_symbols.types.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.types.required_modifiers = 
+
+dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, method
+dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.non_field_members.required_modifiers = 
+
+# Naming styles
+
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.required_suffix = 
+dotnet_naming_style.begins_with_i.word_separator = 
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+tab_width = 4
+indent_size = 4
+end_of_line = crlf
+
+
+# customized settings (rules that start with SA are enforced by StyleCop Analyzer. CS by C# Compiler)
+
+# rules i dont like:
+dotnet_diagnostic.SA1600.severity = none  # Elements should be documented on all properties
+dotnet_diagnostic.SA1101.severity = none  # Prefix local calls with this
+dotnet_diagnostic.SA1633.severity = none  # The file header is missing or not located at the top of the file.
+dotnet_diagnostic.SA1200.severity = none  # Using directive should appear within a namespace declaration
+dotnet_diagnostic.SA1009.severity = none  # Closing parenthesis should not be followed by a space. was overwritting this:Colon should be preceded by a space.
+dotnet_diagnostic.CS8618.severity = none  # Non-nullable property 'FirstName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable.
+dotnet_diagnostic.SA1000.severity = none  # The keyword 'new' should be followed by a space.
+dotnet_diagnostic.SA1204.severity = none  # Static members should appear before non-static members
+dotnet_diagnostic.SA1413.severity = none  # Use trailing comma in multi-line initializers
+dotnet_diagnostic.SA1122.severity = none  # Use string.Empty for empty strings
+dotnet_diagnostic.SA1407.severity = none  # Arithmetic expressions should declare precedence
+dotnet_diagnostic.S6562.severity = none  # Provide the "DateTimeKind" when creating this object. (DateTime end = new DateTime(2024, 12, 31, 0, 0, 0, DateTimeKind.Utc);)
+dotnet_diagnostic.SA0001.severity = none  # XML comment analysis is disabled due to project configuration
+
+# not sure if we want:
+dotnet_diagnostic.SA1615.severity = none  # Element return value should be documented
+dotnet_diagnostic.SA1503.severity = none  # Braces should not be omitted like if(true) return ... will give error because of lacking braces
+
+
+# rules i like:
+dotnet_diagnostic.SA1309.severity = none  # Field names should not begin with underscore (was overwriting editorconfig rule)
+dotnet_diagnostic.SA1516.severity = none  # Elements should be separated by blank line 
+dotnet_diagnostic.SA1210.severity = none  # Using directives should be ordered alphabetically by the namespaces.
+dotnet_diagnostic.SA1629.severity = none  # Documentation text should end with a period
+dotnet_diagnostic.SA1028.severity = none  # Code should not contain trailing whitespace
+dotnet_diagnostic.SA1507.severity = none  # Code should not contain multiple blank lines in a row
+dotnet_diagnostic.SA1508.severity = none  # A closing brace should not be preceded by a blank line.
+dotnet_diagnostic.SA1611.severity = none  # The documentation for parameter 'count' is missing(function parameter should be documentet)
+dotnet_diagnostic.SA1116.severity = none  # The parameters should begin on the line after the declaration, whenever the parameter span across multiple lines
+dotnet_diagnostic.SA1202.severity = none  # 'public' members should come before 'private' members
+
+
+
+
