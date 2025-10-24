@@ -6,43 +6,87 @@ namespace Test_Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CprController : ControllerBase
+public class CprController(CprService cprService, NameService nameService) : ControllerBase
 {
-    private readonly CprService _cprService;
-
-    public CprController(CprService cprService)
-    {
-        _cprService = cprService;
-    }
-
-    /// <summary>
-    /// Genererer et tilfÊldigt CPR nummer med tilfÊldig f¯dselsdato og k¯n
-    /// </summary>
+    // ============================================================
+    // 1Ô∏è‚É£ CPR ONLY
+    // ============================================================
     [HttpGet("random")]
     public ActionResult<Cpr> GetRandomCpr()
     {
-        var cpr = _cprService.GenerateRandomCpr();
+        var cpr = cprService.GenerateRandomCpr();
         return Ok(cpr);
     }
 
-    /// <summary>
-    /// Genererer et CPR nummer baseret pÂ specifik f¯dselsdato og k¯n
-    /// </summary>
-    /// <param name="dateOfBirth">F¯dselsdato (format: yyyy-MM-dd)</param>
-    /// <param name="gender">K¯n: 'male' eller 'female'</param>
+    // ============================================================
+    // 2Ô∏è‚É£ CPR + NAME + GENDER
+    // ============================================================
+    [HttpGet("random/with-name-gender")]
+    public IActionResult GetCprWithNameGender()
+    {
+        var cpr = cprService.GenerateRandomCpr();
+        var name = nameService.GetRandomName();
+
+        var result = new
+        {
+            cpr = new
+            {
+                number = cpr.Number,
+                dateOfBirth = cpr.DateOfBirth
+            },
+            name = new
+            {
+                name = name.FirstName,
+                surname = name.LastName,
+                gender = name.Gender
+            }
+        };
+
+        return Ok(result);
+    }
+
+    // ============================================================
+    // 3Ô∏è‚É£ CPR + NAME + GENDER + DOB
+    // ============================================================
+    [HttpGet("random/with-name-gender-dob")]
+    public IActionResult GetCprWithNameGenderDob()
+    {
+        var cpr = cprService.GenerateRandomCpr();
+        var name = nameService.GetRandomName();
+
+        var result = new
+        {
+            cpr = new
+            {
+                number = cpr.Number,
+                dateOfBirth = cpr.DateOfBirth
+            },
+            name = new
+            {
+                name = name.FirstName,
+                surname = name.LastName,
+                gender = name.Gender
+            },
+            dateOfBirth = cpr.DateOfBirth
+        };
+
+        return Ok(result);
+    }
+
+    // ============================================================
+    // 4Ô∏è‚É£ Manual CPR generation (for completeness)
+    // ============================================================
     [HttpPost("generate")]
     public ActionResult<Cpr> GenerateCpr([FromQuery] DateTime dateOfBirth, [FromQuery] string gender)
     {
         if (string.IsNullOrEmpty(gender))
             return BadRequest("Gender must be specified ('male' or 'female')");
 
-        if (!gender.Equals("male", StringComparison.OrdinalIgnoreCase) && 
+        if (!gender.Equals("male", StringComparison.OrdinalIgnoreCase) &&
             !gender.Equals("female", StringComparison.OrdinalIgnoreCase))
             return BadRequest("Gender must be 'male' or 'female'");
 
-        var cpr = _cprService.GenerateCpr(dateOfBirth, gender);
+        var cpr = cprService.GenerateCpr(dateOfBirth, gender);
         return Ok(cpr);
     }
-
-    
 }
