@@ -15,7 +15,11 @@ public class CprController(CprService cprService, NameService nameService) : Con
     public ActionResult<Cpr> GetRandomCpr()
     {
         var cpr = cprService.GenerateRandomCpr();
-        return Ok(cpr);
+        var cprObject= new Dictionary<string, object>
+        {
+            ["cprnummer"] = cpr.Number
+        };
+        return Ok(cprObject);
     }
 
     // ============================================================
@@ -29,11 +33,7 @@ public class CprController(CprService cprService, NameService nameService) : Con
 
         var result = new
         {
-            cpr = new
-            {
-                number = cpr.Number,
-                dateOfBirth = cpr.DateOfBirth
-            },
+            cprnummer = cpr.Number,
             name = new
             {
                 name = name.FirstName,

@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Test_Backend.Services;
+using System.Runtime.ConstrainedExecution;
+using System.Xml.Linq;
 using Test_Backend.Models;
+using Test_Backend.Services;
 
 namespace Test_Backend.Controllers;
 
@@ -19,6 +21,17 @@ public class AddressController : ControllerBase
     public ActionResult<Adress> GetRandomAddress()
     {
         var address = _addressService.GetRandomAddress();
-        return Ok(address);
+        var result = new
+        {
+            street = address.Street,
+            doornumber = address.Number,
+            floor = address.Floor,
+            door = address.Door,
+            postalCode = address.PostalCode,
+            town = address.Town,
+
+        };
+
+        return Ok(result);
     }
 }
