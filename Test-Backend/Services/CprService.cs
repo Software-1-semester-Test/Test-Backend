@@ -1,8 +1,9 @@
 using Test_Backend.Models;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Services;
 
-public class CprService
+public class CprService : ICprService
 {
     private readonly Random _random;
 

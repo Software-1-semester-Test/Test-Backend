@@ -6,4 +6,8 @@ public class Person
     public Name Name { get; set; } = new Name();
     public Adress Address { get; set; } = new Adress();
     public PhoneNumber Mobile { get; set; } = new PhoneNumber();
+
+    public Person()
+    {
+    }
 }

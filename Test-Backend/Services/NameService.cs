@@ -1,10 +1,11 @@
 using System.ComponentModel;
 using System.Text.Json;
 using Test_Backend.Models;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Services;
 
-public class NameService
+public class NameService : INameService
 {
     private readonly List<Name> _names;
     private readonly Random _random;
