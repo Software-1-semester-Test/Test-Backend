@@ -13,6 +13,11 @@ public class AddressService
         _connectionString = configuration.GetConnectionString("DefaultConnection");
     }
 
+    public AddressService()
+    {
+        
+    }
+
     public Adress GetRandomAddress()
     {
         var address = new Adress
@@ -38,26 +43,26 @@ public class AddressService
         return address;
     }
 
-    private string RandomStreet()
+    public string RandomStreet()
     {
         int length = _rand.Next(5, 12);
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         return new string(Enumerable.Range(0, length).Select(_ => chars[_rand.Next(chars.Length)]).ToArray()) + "vej";
     }
 
-    private string RandomNumber()
+    public string RandomNumber()
     {
         int number = _rand.Next(1, 1000);
         string letter = _rand.NextDouble() < 0.3 ? ((char)_rand.Next('A', 'Z' + 1)).ToString() : "";
         return $"{number}{letter}";
     }
 
-    private string RandomFloor()
+    public string RandomFloor()
     {
         return _rand.NextDouble() < 0.2 ? "st" : _rand.Next(1, 100).ToString();
     }
 
-    private string RandomDoor()
+    public string RandomDoor()
     {
         string[] fixedDoors = { "th", "mf", "tv" };
         if (_rand.NextDouble() < 0.3)
