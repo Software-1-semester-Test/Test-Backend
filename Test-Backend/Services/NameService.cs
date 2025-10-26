@@ -28,5 +28,4 @@ public class NameService
     public IEnumerable<Name> GetNames() => _names;
     
     public IEnumerable<Name> GetByGender(string gender) => GetNames().Where(n => n.Gender == gender);
-    
 }
