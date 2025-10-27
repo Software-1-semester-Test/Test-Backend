@@ -31,7 +31,7 @@ jobs:
         run: dotnet build --no-restore
 
       - name: Run .NET tests
-        run: dotnet test ./TestProject1/TestProject1.csproj --no-build --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test ./TestProject1/Test.csproj --no-build --logger "trx;LogFileName=test-results.trx"
 
       - name: Upload .NET test results
         if: always()
