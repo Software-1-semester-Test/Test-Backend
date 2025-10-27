@@ -1,14 +1,16 @@
-﻿name: Run API and Postman Tests
+﻿name: Run API, Unit, and Postman Tests
+
 on:
   push:
-    branches: [main] # change to main
+    branches: [blackboxpipeline] # change to main later
   pull_request:
-    branches: [main]
-  workflow_dispatch: # 👈 allows manual trigger
+    branches: [blackboxpipeline]
+  workflow_dispatch:
 
 jobs:
   test-api:
     runs-on: ubuntu-latest
+
     env:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: ${{ secrets.CONNECTION_STRING }}
@@ -25,8 +27,19 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: Build
+      - name: Build solution
         run: dotnet build --no-restore
+
+      - name: Run .NET tests
+        run: dotnet test ./TestProject1/Test.csproj --no-build --logger "trx;LogFileName=test-results.trx"
+
+      - name: Upload .NET test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-test-results
+          path: '**/test-results.trx'
+          if-no-files-found: warn
 
       - name: Run API in background
         run: |
@@ -48,7 +61,7 @@ jobs:
           cat api.log
           exit 1
 
-      - name: Install Newman (Postman CLI)
+      - name: Install Newman
         run: npm install -g newman
 
       - name: Run Postman tests
@@ -65,7 +78,7 @@ jobs:
           echo "=== API Logs ==="
           cat api.log
 
-      - name: Upload test results
+      - name: Upload Postman results
         if: always()
         uses: actions/upload-artifact@v4
         with:
