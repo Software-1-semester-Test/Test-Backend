@@ -2,9 +2,9 @@
 
 on:
   push:
-    branches: [main] # change to main later
+    branches: [olli2] # change to main later
   pull_request:
-    branches: [main]
+    branches: [olli2]
   workflow_dispatch:
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dotnet-test-results
-          path: '**/test-results.trx'
+          path: "**/test-results.trx"
           if-no-files-found: warn
 
       - name: Run API in background
