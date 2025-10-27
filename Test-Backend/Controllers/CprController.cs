@@ -9,7 +9,7 @@ namespace Test_Backend.Controllers;
 public class CprController(CprService cprService, NameService nameService) : ControllerBase
 {
     // ============================================================
-    // 1️⃣ CPR ONLY
+    // 1️⃣ CPR ONLY 
     // ============================================================
     [HttpGet("random")]
     public ActionResult<Cpr> GetRandomCpr()
