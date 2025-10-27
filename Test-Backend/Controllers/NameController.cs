@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Test_Backend.Services;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class NameController(NameService nameService) : ControllerBase
+    public class NameController(INameService nameService) : ControllerBase
     {
         private readonly Random _random = new();
 

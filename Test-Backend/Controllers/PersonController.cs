@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Test_Backend.Models;
-using Test_Backend.Services;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PersonController(PersonService personService) : ControllerBase
+    public class PersonController(IPersonService personService) : ControllerBase
     {
         /// <summary>
         /// Get a single random person

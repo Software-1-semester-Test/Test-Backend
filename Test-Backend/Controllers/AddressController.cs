@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Runtime.ConstrainedExecution;
 using System.Xml.Linq;
 using Test_Backend.Models;
-using Test_Backend.Services;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Controllers;
 
@@ -10,9 +10,9 @@ namespace Test_Backend.Controllers;
 [Route("api/[controller]")]
 public class AddressController : ControllerBase
 {
-    private readonly AddressService _addressService;
+    private readonly IAddressService _addressService;
 
-    public AddressController(AddressService addressService)
+    public AddressController(IAddressService addressService)
     {
         _addressService = addressService;
     }
