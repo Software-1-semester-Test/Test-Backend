@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Test_Backend.Tests;
 
-public class NameServiceTests : INameService
+public class NameServiceTests
 {
     private readonly NameService _nameService;
     private readonly IWebHostEnvironment _mockEnvironment;

@@ -5,16 +5,17 @@ namespace Test_Backend.Services;
 
 public class PersonService : IPersonService
 {
-    private readonly NameService _nameService;
-    private readonly CprService _cprService;
-    private readonly AddressService _addressService;
-    private readonly PhoneNumberService _phoneService;
+    private readonly INameService _nameService;
+    private readonly ICprService _cprService;
+    private readonly IAddressService _addressService;
+    private readonly IPhoneNumberService _phoneService;
+    private static readonly Random _rand = new Random();
 
     public PersonService(
-        NameService nameService,
-        CprService cprService,
-        AddressService addressService,
-        PhoneNumberService phoneService)
+        INameService nameService,
+        ICprService cprService,
+        IAddressService addressService,
+        IPhoneNumberService phoneService)
     {
         _nameService = nameService;
         _cprService = cprService;
