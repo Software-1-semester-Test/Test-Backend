@@ -2,9 +2,9 @@
 
 on:
   push:
-    branches: [blackboxpipeline] # change to main later
+    branches: [main] # change to main later
   pull_request:
-    branches: [blackboxpipeline]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
