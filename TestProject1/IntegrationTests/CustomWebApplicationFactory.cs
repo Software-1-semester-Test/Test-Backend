@@ -4,9 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Test_Backend.Services;
+using Test_Backend.Interfaces;
 using Test_Backend.Models;
-using MySql.Data.MySqlClient;
 
 namespace TestProject1.IntegrationTests;
 
@@ -52,47 +51,62 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             // Load configuration from Test-Backend project
             config.AddJsonFile("appsettings.json", optional: true)
                   .AddEnvironmentVariables();
-                  
-            // Override connection string for tests if needed
-            config.AddInMemoryCollection(new Dictionary<string, string>
-            {
-                ["ConnectionStrings:DefaultConnection"] = "Server=localhost;Database=testdb;User=root;Password=test;"
-            }!);
         });
 
         builder.ConfigureServices(services =>
         {
-            // Replace AddressService with mock version that doesn't use database
-            services.RemoveAll<AddressService>();
-            services.AddTransient<AddressService>(sp => new MockAddressService());
+            // Remove the real IAddressService and replace with mock
+            services.RemoveAll<IAddressService>();
+            services.AddTransient<IAddressService, MockAddressService>();
         });
     }
 }
 
-// Mock AddressService that doesn't require database connection
-public class MockAddressService : AddressService
+// Mock implementation of IAddressService that doesn't require database
+public class MockAddressService : IAddressService
 {
     private static readonly Random _rand = new Random();
     private static readonly string[] TestPostalCodes = { "1000", "2000", "3000", "4000", "5000", "8000" };
     private static readonly string[] TestTowns = { "København", "Aarhus", "Odense", "Aalborg", "Esbjerg", "Randers" };
+    private static readonly string[] TestStreets = { "Hovedgade", "Strandvej", "Parkvej", "Skolegade", "Kirkevej" };
 
-    public MockAddressService() : base()
+    public Adress GetRandomAddress()
     {
-    }
-
-    // Override the virtual method to avoid database call
-    public override Adress GetRandomAddress()
-    {
-        var address = new Adress
+        return new Adress
         {
-            Street = RandomStreet(),
-            Number = RandomNumber(),
-            Floor = RandomFloor(),
-            Door = RandomDoor(),
+            Street = GenerateStreet(),
+            Number = GenerateNumber(),
+            Floor = GenerateFloor(),
+            Door = GenerateDoor(),
             PostalCode = TestPostalCodes[_rand.Next(TestPostalCodes.Length)],
             Town = TestTowns[_rand.Next(TestTowns.Length)]
         };
+    }
 
-        return address;
+    private string GenerateStreet()
+    {
+        return TestStreets[_rand.Next(TestStreets.Length)];
+    }
+
+    private string GenerateNumber()
+    {
+        int number = _rand.Next(1, 200);
+        string letter = _rand.NextDouble() < 0.3 ? ((char)_rand.Next('A', 'D')).ToString() : "";
+        return $"{number}{letter}";
+    }
+
+    private string GenerateFloor()
+    {
+        return _rand.NextDouble() < 0.2 ? "st" : _rand.Next(1, 10).ToString();
+    }
+
+    private string GenerateDoor()
+    {
+        string[] fixedDoors = { "th", "mf", "tv" };
+        if (_rand.NextDouble() < 0.3)
+            return fixedDoors[_rand.Next(fixedDoors.Length)];
+
+        string letter = ((char)_rand.Next('a', 'd')).ToString();
+        return letter;
     }
 }
