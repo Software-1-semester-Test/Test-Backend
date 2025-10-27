@@ -32,7 +32,7 @@ jobs:
 
       - name: Run API in background
         run: |
-          nohup dotnet run --urls "http://localhost:5000" > api.log 2>&1 &
+          nohup dotnet run --urls "http://localhost:7023" > api.log 2>&1 &
           sleep 10
           curl -f http://localhost:7023/swagger || (echo "API failed to start" && cat api.log && exit 1)
 
