@@ -18,7 +18,7 @@ public class AddressService
         
     }
 
-    public Adress GetRandomAddress()
+    public virtual Adress GetRandomAddress()
     {
         var address = new Adress
         {
