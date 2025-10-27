@@ -30,7 +30,7 @@ jobs:
       
       - name: Run API in background
         run: |
-          nohup dotnet run --urls "http://localhost:7023" > api.log 2>&1 &
+          nohup dotnet run --project ./Test-Backend/Test-Backend.csproj --urls "http://localhost:7023" > api.log 2>&1 &
           echo "API started, waiting for it to be ready..."
       
       - name: Wait for API to be ready
