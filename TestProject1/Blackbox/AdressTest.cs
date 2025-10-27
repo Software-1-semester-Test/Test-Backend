@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Test_Backend.Services;
 
-namespace Test
+namespace Test.Blackbox
 {
     public class AdressTest
     {

@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using Test_Backend.Services;
 
-namespace TestProject1
+namespace Test.Blackbox
 {
     public class cprTest
     {
@@ -30,7 +30,7 @@ namespace TestProject1
         [Theory]
         public void IsRigthGender(string stringdate, string gender, int expected)
         {
-            var date = DateTime.Parse(stringdate, null, System.Globalization.DateTimeStyles.AssumeUniversal);
+            var date = DateTime.Parse(stringdate, null, DateTimeStyles.AssumeUniversal);
             CprService service = new CprService();
 
             var result = service.GenerateCpr(date, gender);
@@ -46,7 +46,7 @@ namespace TestProject1
         [Theory]
         public void DateofbirthmatchCpr(string cpr, string date, bool expected)
         {
-            var datetime = DateTime.Parse(date, null, System.Globalization.DateTimeStyles.AssumeUniversal);
+            var datetime = DateTime.Parse(date, null, DateTimeStyles.AssumeUniversal);
             CprService service = new CprService();
 
             var result = service.ValidateCprWithDateOfBirth(cpr, datetime);
