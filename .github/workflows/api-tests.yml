@@ -1,9 +1,9 @@
 ﻿name: Run API and Postman Tests
 on:
   push:
-    branches: [postmangithubactions] # change to main
+    branches: [main] # change to main
   pull_request:
-    branches: [postmangithubactions]
+    branches: [main]
   workflow_dispatch: # 👈 allows manual trigger
 
 jobs:
