@@ -32,10 +32,9 @@ var app = builder.Build();
 // Middleware
 if (app.Environment.IsDevelopment())
 {
-    private static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // Enable CORS
 app.UseCors("AllowFrontend");
