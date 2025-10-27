@@ -1,10 +1,11 @@
 using System.ComponentModel;
 using System.Text.Json;
 using Test_Backend.Models;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Services;
 
-public class NameService
+public class NameService : INameService
 {
     private readonly List<Name> _names;
     private readonly Random _random;
@@ -24,9 +25,9 @@ public class NameService
             throw new InvalidOperationException("No names found xd)");
         return _names[_random.Next(_names.Count)];
     }
-    
+
     public IEnumerable<Name> GetNames() => _names;
-    
+
     public IEnumerable<Name> GetByGender(string gender) => GetNames().Where(n => n.Gender == gender);
     public Name? GetByFullName(string firstName, string lastName)
     {
@@ -34,5 +35,5 @@ public class NameService
             string.Equals(n.FirstName, firstName, StringComparison.OrdinalIgnoreCase) &&
             string.Equals(n.LastName, lastName, StringComparison.OrdinalIgnoreCase));
     }
-    
+
 }

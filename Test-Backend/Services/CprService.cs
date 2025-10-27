@@ -1,8 +1,9 @@
 using Test_Backend.Models;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Services;
 
-public class CprService
+public class CprService : ICprService
 {
     private readonly Random _random;
 
@@ -47,7 +48,7 @@ public class CprService
     {
         // Generer tilf�ldig f�dselsdato (mellem 1920 og 2024)
         DateTime randomDate = GenerateRandomDateOfBirth();
-        
+
         // V�lg tilf�ldigt k�n
         string randomGender = _random.Next(2) == 0 ? "female" : "male";
 
@@ -80,7 +81,7 @@ public class CprService
     {
         DateTime start = new DateTime(1920, 1, 1);
         DateTime end = new DateTime(2024, 12, 31);
-        
+
         int range = (end - start).Days;
         return start.AddDays(_random.Next(range));
     }
@@ -100,5 +101,5 @@ public class CprService
         return cprDatePart == expectedDatePart;
     }
 
-   
+
 }

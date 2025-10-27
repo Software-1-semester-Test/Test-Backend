@@ -1,8 +1,9 @@
 using Test_Backend.Models;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Services
 {
-    public class PhoneNumberService
+    public class PhoneNumberService : IPhoneNumberService
     {
         private static readonly Random Rand = new Random();
 
