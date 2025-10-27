@@ -5,6 +5,7 @@ on:
     branches: [ postmangithubactions ] # change to main
   pull_request:
     branches: [ postmangithubactions ]
+  workflow_dispatch:  # 👈 allows manual trigger
 
 jobs:
   test-api:
