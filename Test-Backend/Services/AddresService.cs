@@ -5,7 +5,7 @@ namespace Test_Backend.Services;
 
 public class AddressService
 {
-    private readonly string _connectionString;
+    private readonly string? _connectionString;
     private static readonly Random _rand= new Random();
 
     public AddressService(IConfiguration configuration)

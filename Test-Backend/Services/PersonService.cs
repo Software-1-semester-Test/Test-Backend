@@ -8,7 +8,6 @@ public class PersonService
     private readonly CprService _cprService;
     private readonly AddressService _addressService;
     private readonly PhoneNumberService _phoneService;
-    private static readonly Random _rand = new Random();
 
     public PersonService(
         NameService nameService,

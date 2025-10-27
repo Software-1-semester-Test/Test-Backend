@@ -1,36 +1,8 @@
-﻿namespace Test_Backend
-{
-    public class _
-    {
-    }
-}
+﻿root = true
 
-[*.cs]
-#### Naming styles ####
-
-
-
-# Symbol specifications
-
-dotnet_naming_symbols.property.applicable_kinds = property
-dotnet_naming_symbols.property.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
-dotnet_naming_symbols.property.required_modifiers = 
-
-dotnet_naming_symbols.private_or_internal_field.applicable_kinds = field
-dotnet_naming_symbols.private_or_internal_field.applicable_accessibilities = internal, private, private_protected
-dotnet_naming_symbols.private_or_internal_field.required_modifiers = 
-
-# Naming styles
-
-dotnet_naming_style.pascal_case.required_prefix = 
-dotnet_naming_style.pascal_case.required_suffix = 
-dotnet_naming_style.pascal_case.word_separator = 
-dotnet_naming_style.pascal_case.capitalization = pascal_case
-
-dotnet_naming_style.start_with_.required_prefix = _
-dotnet_naming_style.start_with_.required_suffix = 
-dotnet_naming_style.start_with_.word_separator = 
-dotnet_naming_style.start_with_.capitalization = camel_case
+# =====================================================
+# C# Code Style & Formatting
+# =====================================================
 csharp_using_directive_placement = outside_namespace:silent
 csharp_prefer_simple_using_statement = true:suggestion
 csharp_prefer_braces = true:silent
@@ -47,11 +19,59 @@ csharp_style_expression_bodied_indexers = true:silent
 csharp_indent_labels = one_less_than_current
 csharp_style_expression_bodied_accessors = true:silent
 csharp_space_around_binary_operators = before_and_after
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
 
-[*.{cs,vb}]
-#### Naming styles ####
+tab_width = 4
+indent_size = 4
 
+
+# =====================================================
+# Symbol specifications
+# =====================================================
+
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.applicable_accessibilities = *
+dotnet_naming_symbols.interface.required_modifiers = 
+
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
+dotnet_naming_symbols.types.applicable_accessibilities = *
+dotnet_naming_symbols.types.required_modifiers = 
+
+dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, method
+dotnet_naming_symbols.non_field_members.applicable_accessibilities = *
+dotnet_naming_symbols.non_field_members.required_modifiers = 
+
+dotnet_naming_symbols.property.applicable_kinds = property
+dotnet_naming_symbols.property.applicable_accessibilities = *
+dotnet_naming_symbols.property.required_modifiers = 
+
+dotnet_naming_symbols.private_or_internal_field.applicable_kinds = field
+dotnet_naming_symbols.private_or_internal_field.applicable_accessibilities = internal, private, private_protected
+dotnet_naming_symbols.private_or_internal_field.required_modifiers = 
+
+dotnet_naming_symbols.local_variables_and_parameters.applicable_kinds = local, parameter
+dotnet_naming_symbols.local_variables_and_parameters.applicable_accessibilities = *
+dotnet_naming_symbols.local_variables_and_parameters.required_modifiers = 
+
+
+# =====================================================
+# Naming styles
+# =====================================================
+
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_style.start_with_.required_prefix = _
+dotnet_naming_style.start_with_.capitalization = camel_case
+
+dotnet_naming_style.camel_case.capitalization = camel_case
+
+
+# =====================================================
 # Naming rules
+# =====================================================
 
 dotnet_naming_rule.interface_should_be_begins_with_i.severity = warning
 dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
@@ -65,49 +85,22 @@ dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = warning
 dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
 dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
 
-# added myself
 dotnet_naming_rule.property_should_be_pascal_case.severity = warning
 dotnet_naming_rule.property_should_be_pascal_case.symbols = property
 dotnet_naming_rule.property_should_be_pascal_case.style = pascal_case
 
-dotnet_naming_rule.private_or_internal_field_should_be_start_with_.severity = warning
-dotnet_naming_rule.private_or_internal_field_should_be_start_with_.symbols = private_or_internal_field
-dotnet_naming_rule.private_or_internal_field_should_be_start_with_.style = start_with_
+dotnet_naming_rule.private_or_internal_field_should_start_with_.severity = warning
+dotnet_naming_rule.private_or_internal_field_should_start_with_.symbols = private_or_internal_field
+dotnet_naming_rule.private_or_internal_field_should_start_with_.style = start_with_
 
-# Symbol specifications
+dotnet_naming_rule.locals_and_parameters_should_be_camel_case.severity = warning
+dotnet_naming_rule.locals_and_parameters_should_be_camel_case.symbols = local_variables_and_parameters
+dotnet_naming_rule.locals_and_parameters_should_be_camel_case.style = camel_case
 
-dotnet_naming_symbols.interface.applicable_kinds = interface
-dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
-dotnet_naming_symbols.interface.required_modifiers = 
-
-dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
-dotnet_naming_symbols.types.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
-dotnet_naming_symbols.types.required_modifiers = 
-
-dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, method
-dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
-dotnet_naming_symbols.non_field_members.required_modifiers = 
-
-# Naming styles
-
-dotnet_naming_style.begins_with_i.required_prefix = I
-dotnet_naming_style.begins_with_i.required_suffix = 
-dotnet_naming_style.begins_with_i.word_separator = 
-dotnet_naming_style.begins_with_i.capitalization = pascal_case
-
-dotnet_naming_style.pascal_case.required_prefix = 
-dotnet_naming_style.pascal_case.required_suffix = 
-dotnet_naming_style.pascal_case.word_separator = 
-dotnet_naming_style.pascal_case.capitalization = pascal_case
-
-dotnet_naming_style.pascal_case.required_prefix = 
-dotnet_naming_style.pascal_case.required_suffix = 
-dotnet_naming_style.pascal_case.word_separator = 
-dotnet_naming_style.pascal_case.capitalization = pascal_case
-dotnet_style_operator_placement_when_wrapping = beginning_of_line
-tab_width = 4
-indent_size = 4
 end_of_line = crlf
+
+
+
 
 
 # customized settings (rules that start with SA are enforced by StyleCop Analyzer. CS by C# Compiler)
@@ -134,6 +127,7 @@ dotnet_diagnostic.CA1305.severity = none  # The behavior of 'int.ToString()' cou
 dotnet_diagnostic.SA1108.severity = none  # Block statements should not contain embedded comments
 dotnet_diagnostic.CA1024.severity = none  # Use properties where appropriate
 dotnet_diagnostic.S1643.severity = none  # Use a StringBuilder instead.
+dotnet_diagnostic.S6968.severity = none  # Annotate this method with ProducesResponseType containing the return type for successful responses.
 # not sure if we want:
 dotnet_diagnostic.SA1615.severity = none  # Element return value should be documented
 dotnet_diagnostic.SA1503.severity = none  # Braces should not be omitted like if(true) return ... will give error because of lacking braces
@@ -153,6 +147,7 @@ dotnet_diagnostic.SA1202.severity = none  # 'public' members should come before 
 dotnet_diagnostic.S2325.severity = none  # Make 'RandomFloor' a static method.
 dotnet_diagnostic.CA5394.severity = none  # Random is an insecure random number generator. Use cryptographically secure random number generators when randomness is required for security.
 dotnet_diagnostic.CA1822.severity = none  # Member 'RandomDoor' does not access instance data and can be marked as static
+dotnet_diagnostic.S6580.severity = none  # Use a format provider when parsing date and time.
 
 # --- SECURITY RULES (make these errors) ---
 dotnet_diagnostic.S4830.severity = error  # Enable server certificate validation on this SSL/TLS connection
