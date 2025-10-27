@@ -126,6 +126,8 @@ dotnet_diagnostic.CA1002.severity = none  # Change 'List<Name>' in 'PersonNamesD
 dotnet_diagnostic.CA1305.severity = none  # The behavior of 'int.ToString()' could vary based on the current user's locale settings. Replace this call in 'PhoneNumberService.GetRandomPhoneNumber()' with a call to 'int.ToString(IFormatProvider)'.
 dotnet_diagnostic.SA1108.severity = none  # Block statements should not contain embedded comments
 dotnet_diagnostic.CA1024.severity = none  # Use properties where appropriate
+dotnet_diagnostic.CS0506.severity = none  # 'MockAddressService.GetRandomAddress()': cannot override inherited member 'AddressService.GetRandomAddress()' because it is not marked virtual, abstract, or override
+
 dotnet_diagnostic.S1643.severity = none  # Use a StringBuilder instead.
 dotnet_diagnostic.S6968.severity = none  # Annotate this method with ProducesResponseType containing the return type for successful responses.
 # not sure if we want:
@@ -159,3 +161,7 @@ dotnet_diagnostic.CA1850.severity = error  # Prefer static 'System.Security.Cryp
 dotnet_diagnostic.CA2301.severity = error  # The method 'object BinaryFormatter.Deserialize(Stream serializationStream)' is insecure when deserializing untrusted data without a SerializationBinder to restrict the type of objects in the deserialized object graph.
 dotnet_diagnostic.SA1401.severity = error  # Field should be private
 dotnet_diagnostic.CA5359.severity = error  # The ServerCertificateValidationCallback is set to a function that accepts any server certificate, by always returning true. Ensure that server certificates are validated to verify the identity of the server receiving requests.
+
+
+[*.cs]
+dotnet_diagnostic.S6966.severity = none
