@@ -1,12 +1,13 @@
 using MySql.Data.MySqlClient;
 using Test_Backend.Models;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Services;
 
-public class AddressService
+public class AddressService : IAddressService
 {
-    private readonly string? _connectionString;
-    private static readonly Random _rand= new Random();
+    private readonly string _connectionString;
+    private static readonly Random _rand = new Random();
 
     public AddressService(IConfiguration configuration)
     {
@@ -15,10 +16,10 @@ public class AddressService
 
     public AddressService()
     {
-        
+
     }
 
-    public Adress GetRandomAddress()
+    public virtual Adress GetRandomAddress()
     {
         var address = new Adress
         {

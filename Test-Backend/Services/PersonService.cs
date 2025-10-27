@@ -1,8 +1,9 @@
 using Test_Backend.Models;
+using Test_Backend.Interfaces;
 
 namespace Test_Backend.Services;
 
-public class PersonService
+public class PersonService : IPersonService
 {
     private readonly NameService _nameService;
     private readonly CprService _cprService;

@@ -1,15 +1,16 @@
 using MySql.Data.MySqlClient;
 using Test_Backend.Services;
+using Test_Backend.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Services
-builder.Services.AddSingleton<NameService>();
-builder.Services.AddSingleton<CprService>();
-builder.Services.AddSingleton<PhoneNumberService>();
-builder.Services.AddTransient<AddressService>();
-builder.Services.AddSingleton<PersonService>();
+builder.Services.AddSingleton<INameService, NameService>();
+builder.Services.AddSingleton<ICprService, CprService>();
+builder.Services.AddSingleton<IPhoneNumberService, PhoneNumberService>();
+builder.Services.AddTransient<IAddressService, AddressService>();
+builder.Services.AddSingleton<IPersonService, PersonService>();
 builder.Services.AddTransient<MySqlConnection>(_ => new MySqlConnection(connectionString));
 
 // Controllers & Swagger
@@ -44,3 +45,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.Run();
+
+// Make the implicit Program class public for testing
+public partial class Program { }
