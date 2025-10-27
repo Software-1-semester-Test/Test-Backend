@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Postman tests
         run: |
-          newman run fake_info_php Copy.postman_collection.json \
+          newman run Test-Backend.api-tests.postman_collection.json \
             --env-var baseUrl=http://localhost:7023 \
             --reporters cli,junit \
             --reporter-junit-export results.xml
