@@ -1,0 +1,53 @@
+﻿name: Run API and Postman Tests
+
+on:
+  push:
+    branches: [ postmangithubactions ] # change to main
+  pull_request:
+    branches: [ postmangithubactions ]
+
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+
+    env:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: ${{ secrets.CONNECTION_STRING }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Run API in background
+        run: |
+          nohup dotnet run --urls "http://localhost:5000" > api.log 2>&1 &
+          sleep 10
+          curl -f http://localhost:7023/swagger || (echo "API failed to start" && cat api.log && exit 1)
+
+      - name: Install Newman (Postman CLI)
+        run: npm install -g newman
+
+      - name: Run Postman tests
+        run: |
+          newman run Tests.postman_collection.json \
+            --env-var baseUrl=http://localhost:7023 \
+            --reporters cli,junit \
+            --reporter-junit-export results.xml
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: postman-results
+          path: results.xml

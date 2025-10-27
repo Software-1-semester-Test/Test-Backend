@@ -1,0 +1,664 @@
+{
+	"info": {
+		"_postman_id": "190828be-e151-4cb6-bf2d-2de1e4d134b3",
+		"name": "fake_info_php Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25638427"
+	},
+	"item": [
+		{
+			"name": "cpr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"cprnummer\");\r",
+							"});\r",
+							"pm.test(\"Response has CPR property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"cprnummer\");\r",
+							"});\r",
+							"pm.test(\"CPR is exactly 10 numeric digits\", function () {\r",
+							"    const cpr = pm.response.json().cprnummer;\r",
+							"    pm.expect(cpr).to.match(/^\\d{10}$/);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response no name and gender property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"name\")\r",
+							"    pm.expect(jsonData).to.not.have.property(\"surname\")\r",
+							"    pm.expect(jsonData).to.not.have.property(\"gender\")\r",
+							"});\r",
+							"pm.test(\"Response no address property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"address\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response no birthDate property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"birthDate\")\r",
+							"});\r",
+							"pm.test(\"Response no mobile property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"mobile\")\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/cpr/random",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"cpr",
+						"random"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "name-gender",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response has gender property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"gender\");\r",
+							"});\r",
+							"pm.test(\"Response has firstName property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"name\");\r",
+							"});\r",
+							"pm.test(\"Response has lastName property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"surname\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response no address property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"address\")\r",
+							"});\r",
+							"pm.test(\"Response no cpr property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"cpr\")\r",
+							"});\r",
+							"pm.test(\"Response no birthDate property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"birthDate\")\r",
+							"});\r",
+							"pm.test(\"Response no mobile property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"mobile\")\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/name/random",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"name",
+						"random"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "name-gender-dob",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response has dateOfBirth property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"dateOfBirth\");\r",
+							"});\r",
+							"pm.test(\"Response has gender property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"gender\");\r",
+							"});\r",
+							"pm.test(\"Response has name property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"name\");\r",
+							"});\r",
+							"pm.test(\"Response has surname property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"surname\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response no address property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"address\")\r",
+							"});\r",
+							"pm.test(\"Response no cpr property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"cpr\")\r",
+							"});\r",
+							"pm.test(\"Response no cpr property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"cpr\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/name/random?includeDob=true",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"name",
+						"random"
+					],
+					"query": [
+						{
+							"key": "includeDob",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cpr-name-gender",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response has CPR property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"cprnummer\");\r",
+							"});\r",
+							"pm.test(\"Response has gender property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"gender\");\r",
+							"});\r",
+							"pm.test(\"Response has name property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"name\");\r",
+							"});\r",
+							"pm.test(\"Response has firstName property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"name\");\r",
+							"});\r",
+							"pm.test(\"Response has lastName property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"surname\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response no address property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"address\")\r",
+							"});\r",
+							"pm.test(\"Response no birthDate property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"birthDate\")\r",
+							"});\r",
+							"pm.test(\"Response no mobile property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"mobile\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/Cpr/random/with-name-gender",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"Cpr",
+						"random",
+						"with-name-gender"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cpr-name-gender-dob",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response has CPR property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"cpr\");\r",
+							"});\r",
+							"pm.test(\"Response has gender property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"gender\");\r",
+							"});\r",
+							"pm.test(\"Response has name property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"name\");\r",
+							"});\r",
+							"pm.test(\"Response has firstName property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"name\");\r",
+							"});\r",
+							"pm.test(\"Response has lastName property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"surname\");\r",
+							"});\r",
+							"pm.test(\"Response has birthDate property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.cpr).to.have.property(\"dateOfBirth\");\r",
+							"});\r",
+							"pm.test(\"Response has cprn property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.cpr).to.have.property(\"number\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response no address property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"address\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/Cpr/random/with-name-gender-dob",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"Cpr",
+						"random",
+						"with-name-gender-dob"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "address",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response has street property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"street\");\r",
+							"});\r",
+							"pm.test(\"Response has doornumber property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"doornumber\");\r",
+							"});\r",
+							"pm.test(\"Response has floor property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"floor\");\r",
+							"});\r",
+							"pm.test(\"Response has door property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"door\");\r",
+							"});\r",
+							"pm.test(\"Response has postalCode property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"postalCode\");\r",
+							"});\r",
+							"pm.test(\"Response has town property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"town\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response no name and gender property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"name\")\r",
+							"    pm.expect(jsonData).to.not.have.property(\"surname\")\r",
+							"    pm.expect(jsonData).to.not.have.property(\"gender\")\r",
+							"});\r",
+							"pm.test(\"Response no cpr property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"cpr\")\r",
+							"});\r",
+							"pm.test(\"Response no mobile property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"mobile\")\r",
+							"});\r",
+							"pm.test(\"Response no birthDate property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"birthDate\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/address/random",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"address",
+						"random"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "phone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response has phoneNumber property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"number\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response no birthDate property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"birthDate\")\r",
+							"});\r",
+							"pm.test(\"Response no name and gender property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"name\")\r",
+							"    pm.expect(jsonData).to.not.have.property(\"surname\")\r",
+							"    pm.expect(jsonData).to.not.have.property(\"gender\")\r",
+							"});\r",
+							"pm.test(\"Response no address property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"address\")\r",
+							"});\r",
+							"pm.test(\"Response no cpr property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.have.property(\"cpr\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/phonenumber/random",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"phonenumber",
+						"random"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "person",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response has CPR property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"cpr\");\r",
+							"});\r",
+							"pm.test(\"Response has dateOfBirth property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.cpr).to.have.property(\"dateOfBirth\");\r",
+							"});\r",
+							"pm.test(\"Response has gender property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"gender\");\r",
+							"});\r",
+							"pm.test(\"Response has firstname property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"name\");\r",
+							"});\r",
+							"pm.test(\"Response has name property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"name\");\r",
+							"});\r",
+							"pm.test(\"Response has surname property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.have.property(\"surname\");\r",
+							"});\r",
+							"pm.test(\"Response has phoneNumber property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.mobile).to.have.property(\"number\");\r",
+							"});\r",
+							"pm.test(\"Response has adress property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"address\");\r",
+							"});\r",
+							"pm.test(\"Response has street property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.address).to.have.property(\"street\");\r",
+							"});\r",
+							"pm.test(\"Response has door property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.address).to.have.property(\"door\");\r",
+							"});\r",
+							"pm.test(\"Response has floor property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.address).to.have.property(\"floor\");\r",
+							"});\r",
+							"pm.test(\"Response has door property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.address).to.have.property(\"door\");\r",
+							"});\r",
+							"pm.test(\"Response has postalCode property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.address).to.have.property(\"postalCode\");\r",
+							"});\r",
+							"pm.test(\"Response has town property\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.address).to.have.property(\"town\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/person",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "person&n=<number_of_fake_persons>",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response is an array with correct count\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"    pm.expect(jsonData).to.have.lengthOf(2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Each person has all required properties\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    \r",
+							"    jsonData.forEach((person, index) => {\r",
+							"\r",
+							"        pm.expect(person, `Person ${index} - cpr`).to.have.property(\"cpr\");\r",
+							"        pm.expect(person, `Person ${index} - name`).to.have.property(\"name\");\r",
+							"        pm.expect(person, `Person ${index} - mobile`).to.have.property(\"mobile\");\r",
+							"        pm.expect(person, `Person ${index} - address`).to.have.property(\"address\");\r",
+							"        \r",
+							"\r",
+							"        pm.expect(person.cpr, `Person ${index} - cpr.dateOfBirth`).to.have.property(\"dateOfBirth\");\r",
+							"        \r",
+							"\r",
+							"        pm.expect(person.name, `Person ${index} - name.gender`).to.have.property(\"gender\");\r",
+							"        pm.expect(person.name, `Person ${index} - name.name`).to.have.property(\"name\");\r",
+							"        pm.expect(person.name, `Person ${index} - name.surname`).to.have.property(\"surname\");\r",
+							"        \r",
+							"\r",
+							"        pm.expect(person.mobile, `Person ${index} - mobile.number`).to.have.property(\"number\");\r",
+							"        \r",
+							"\r",
+							"        pm.expect(person.address, `Person ${index} - address.street`).to.have.property(\"street\");\r",
+							"        pm.expect(person.address, `Person ${index} - address.door`).to.have.property(\"door\");\r",
+							"        pm.expect(person.address, `Person ${index} - address.floor`).to.have.property(\"floor\");\r",
+							"        pm.expect(person.address, `Person ${index} - address.postalCode`).to.have.property(\"postalCode\");\r",
+							"        pm.expect(person.address, `Person ${index} - address.town`).to.have.property(\"town\");\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/person/bulk?count=2",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"person",
+						"bulk"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {\r",
+					"    pm.response.to.have.status(200);\r",
+					"});\r",
+					"pm.test(\"Response time is less than 200ms\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+					"});\r",
+					"pm.test(\"Content-Type is application/json\", function () {\r",
+					"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+					"});\r",
+					"pm.test(\"Response is valid JSON\", function () {\r",
+					"    pm.expect(() => JSON.parse(pm.response.text())).not.to.throw();\r",
+					"});\r",
+					"\t"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": ""
+		},
+		{
+			"value": ""
+		},
+		{
+			"value": ""
+		}
+	]
+}
