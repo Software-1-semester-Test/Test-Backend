@@ -5,10 +5,10 @@ namespace Test_Backend.Services
 {
     public class PhoneNumberService : IPhoneNumberService
     {
-        private static readonly Random Rand = new Random();
+        private static readonly Random _rand = new Random();
 
         // Allowed prefixes (as strings, including ranges expanded)
-        private static readonly string[] Prefixes =
+        private static readonly string[] _prefixes =
         [
             "2", "30", "31", "40", "41", "42", "50", "51", "52", "53", "60", "61", "71", "81", "91", "92", "93",
             "342", "344", "345", "346", "347", "348", "349",
@@ -60,7 +60,7 @@ namespace Test_Backend.Services
 
         public PhoneNumber GetRandomPhoneNumber()
         {
-            string prefix = Prefixes[Rand.Next(Prefixes.Length)];
+            string prefix = _prefixes[_rand.Next(_prefixes.Length)];
 
             // Remaining digits to make 8 in total
             int remainingDigits = 8 - prefix.Length;
@@ -68,7 +68,7 @@ namespace Test_Backend.Services
 
             for (int i = 0; i < remainingDigits; i++)
             {
-                number += Rand.Next(0, 10).ToString();
+                number += _rand.Next(0, 10).ToString();
             }
 
             return new PhoneNumber { Number = number };

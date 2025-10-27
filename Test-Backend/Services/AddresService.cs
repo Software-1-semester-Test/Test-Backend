@@ -19,7 +19,7 @@ public class AddressService : IAddressService
 
     }
 
-    public Adress GetRandomAddress()
+    public virtual Adress GetRandomAddress()
     {
         var address = new Adress
         {
