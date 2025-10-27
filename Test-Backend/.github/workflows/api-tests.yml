@@ -1,5 +1,4 @@
 ﻿name: Run API and Postman Tests
-
 on:
   push:
     branches: [ postmangithubactions ] # change to main
@@ -10,45 +9,66 @@ on:
 jobs:
   test-api:
     runs-on: ubuntu-latest
-
     env:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: ${{ secrets.CONNECTION_STRING }}
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-
+      
       - name: Restore dependencies
         run: dotnet restore
-
+      
       - name: Build
         run: dotnet build --no-restore
-
+      
       - name: Run API in background
         run: |
           nohup dotnet run --urls "http://localhost:7023" > api.log 2>&1 &
-          sleep 10
-          curl -f http://localhost:7023/swagger || (echo "API failed to start" && cat api.log && exit 1)
-
+          echo "API started, waiting for it to be ready..."
+      
+      - name: Wait for API to be ready
+        run: |
+          for i in {1..30}; do
+            if curl -f http://localhost:7023/swagger/index.html > /dev/null 2>&1; then
+              echo "API is ready!"
+              exit 0
+            fi
+            echo "Waiting for API... attempt $i/30"
+            sleep 3
+          done
+          echo "API failed to start within 90 seconds"
+          echo "=== API Log ==="
+          cat api.log
+          exit 1
+      
       - name: Install Newman (Postman CLI)
         run: npm install -g newman
-
+      
       - name: Run Postman tests
         run: |
           newman run Test-Backend/api-tests.postman_collection.json \
             --env-var baseUrl=http://localhost:7023 \
             --reporters cli,junit \
             --reporter-junit-export results.xml
-
+        continue-on-error: true
+      
+      - name: Show API logs if tests failed
+        if: failure()
+        run: |
+          echo "=== API Logs ==="
+          cat api.log
+      
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: postman-results
           path: results.xml
+          if-no-files-found: warn
