@@ -30,10 +30,10 @@ namespace Test.Blackbox
         [Fact]
         public void RandomPhone_Always_8Digits_And_ValidPrefix()
         {
-            var svc = new PhoneNumberService(); // or however you construct it
+            var svc = new PhoneNumberService(); 
             var digitRe = new Regex(@"^\d{8}$");
 
-            // Biggish sample to catch issues probabilistically
+            
             const int N = 10000;
 
             for (int i = 0; i < N; i++)
@@ -66,16 +66,14 @@ namespace Test.Blackbox
                 var n = svc.GetRandomPhoneNumber().Number;
                 var pref = LongestMatchingAllowedPrefix(n);
                 if (pref != null) seen.Add(pref);
-                if (seen.Count >= 5) break; // sanity threshold; tweak if you like
+                if (seen.Count >= 5) break; 
             }
 
-            // If this fails consistently, it can indicate a degenerate implementation
-            // that only ever chooses a tiny subset of prefixes.
             Assert.True(seen.Count >= 5,
                 $"Expected to observe multiple different prefixes, but only saw: {string.Join(", ", seen)}");
         }
 
-        // ---- helpers ----
+       
 
         private static HashSet<string> ExpandTokens(IEnumerable<string> tokens)
         {
@@ -102,7 +100,7 @@ namespace Test.Blackbox
 
         private static string? LongestMatchingAllowedPrefix(string number)
         {
-            // Prefer the longest to disambiguate (e.g., "342" vs "3")
+            
             return AllowedPrefixes
                 .Where(p => number.StartsWith(p, StringComparison.Ordinal))
                 .OrderByDescending(p => p.Length)

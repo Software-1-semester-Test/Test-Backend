@@ -23,7 +23,7 @@ namespace Test.Blackbox
         {
             var numberRe = new Regex(@"^([1-9]\d{0,2})([A-Z])?$");
 
-            // Try enough samples to probabilistically cover branches.
+            
             for (int i = 0; i < 5000; i++)
             {
                 var number = _svc.RandomNumber();
@@ -35,7 +35,7 @@ namespace Test.Blackbox
         {
             var floorRe = new Regex(@"^(st|[1-9]\d?)$");
 
-            // Try enough samples to probabilistically cover branches.
+         
             for (int i = 0; i < 5000; i++)
             {
                 var floor = _svc.RandomFloor();
@@ -47,7 +47,7 @@ namespace Test.Blackbox
         {
             var doorRe = new Regex(@"^(th|mf|tv|([1-9]|[1-4]\d|50)|([a-z]-?\d{1,3}))$");
 
-            // Try enough samples to probabilistically cover branches.
+            
             for (int i = 0; i < 5000; i++)
             {
                 var door = _svc.RandomDoor();
